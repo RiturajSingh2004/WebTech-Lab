@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Details</title>
+    <style>
+        body { font-family: Arial; background: #f0f0f0; padding: 20px; margin: 0; }
+        .container { max-width: 600px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        h1 { color: #2c3e50; text-align: center; margin-bottom: 30px; }
+        .detail-card { background: #ecf0f1; padding: 20px; border-radius: 5px; margin: 20px 0; }
+        .detail-row { margin: 15px 0; display: flex; }
+        .label { font-weight: bold; color: #2c3e50; width: 150px; }
+        .value { color: #34495e; }
+        .back-btn { display: block; text-align: center; margin-top: 20px; padding: 12px; background: #3498db; color: white; text-decoration: none; border-radius: 5px; }
+        .back-btn:hover { background: #2980b9; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📋 Employee Details</h1>
+        <div class="detail-card">
+            <div class="detail-row">
+                <span class="label">Employee ID:</span>
+                <span class="value">{{ employee.emp_id }}</span>
+            </div>
+            <div class="detail-row">
+                <span class="label">Name:</span>
+                <span class="value">{{ employee.name }}</span>
+            </div>
+            <div class="detail-row">
+                <span class="label">Position:</span>
+                <span class="value">{{ employee.position }}</span>
+            </div>
+            <div class="detail-row">
+                <span class="label">Department:</span>
+                <span class="value">{{ employee.department }}</span>
+            </div>
+            <div class="detail-row">
+                <span class="label">Salary:</span>
+                <span class="value">₹{{ employee.salary }}</span>
+            </div>
+        </div>
+        <a href="{% url 'employee_list' %}" class="back-btn">← Back to List</a>
+    </div>
+</body>
+</html>
