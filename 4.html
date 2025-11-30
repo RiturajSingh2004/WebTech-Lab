@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Popup Boxes Demo</title>
+    <style>
+        body { font-family: Arial; background: #f0f0f0; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; }
+        h2 { color: #2c3e50; text-align: center; }
+        button { width: 100%; padding: 15px; margin: 10px 0; background: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
+        button:hover { background: #2980b9; }
+        input { width: 100%; padding: 10px; margin: 10px 0; border: 2px solid #3498db; border-radius: 5px; font-size: 16px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>JavaScript Popup Boxes</h2>
+
+        <h3>a) Display Date (onclick)</h3>
+        <button onclick="showDate()">Click to Show Date</button>
+        <input type="text" id="dateBox" placeholder="Date will appear here" readonly>
+
+        <h3>b) Factorial (prompt + alert)</h3>
+        <button onclick="calcFactorial()">Calculate Factorial</button>
+
+        <h3>c) Multiplication Table (prompt + alert)</h3>
+        <button onclick="showTable()">Show Multiplication Table</button>
+
+        <h3>d) Sum of N Numbers (confirm + alert)</h3>
+        <button onclick="calcSum()">Calculate Sum</button>
+    </div>
+
+    <script>
+        // a) Display Date using onclick
+        function showDate() {
+            var today = new Date();
+            document.getElementById('dateBox').value = today.toDateString();
+        }
+
+        // b) Factorial using prompt and alert
+        function calcFactorial() {
+            var n = prompt("Enter a number:");
+            if (n !== null) {
+                n = parseInt(n);
+                var fact = 1;
+                for (var i = 1; i <= n; i++) {
+                    fact *= i;
+                }
+                alert("Factorial of " + n + " = " + fact);
+            }
+        }
+
+        // c) Multiplication Table using prompt and alert
+        function showTable() {
+            var n = prompt("Enter a number for multiplication table:");
+            if (n !== null) {
+                n = parseInt(n);
+                var table = "Multiplication Table of " + n + ":\n\n";
+                for (var i = 1; i <= 10; i++) {
+                    table += n + " × " + i + " = " + (n * i) + "\n";
+                }
+                alert(table);
+            }
+        }
+
+        // d) Sum of N numbers using confirm and alert
+        function calcSum() {
+            var proceed = confirm("Do you want to calculate sum of N numbers?");
+            if (proceed) {
+                var n = prompt("Enter a number N:");
+                if (n !== null) {
+                    n = parseInt(n);
+                    var sum = 0;
+                    for (var i = 1; i <= n; i++) {
+                        sum += i;
+                    }
+                    alert("Sum of first " + n + " numbers = " + sum);
+                }
+            } else {
+                alert("Operation cancelled!");
+            }
+        }
+    </script>
+</body>
+</html>

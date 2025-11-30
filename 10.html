@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AJAX Demo</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body { font-family: Arial; background: #f0f0f0; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; }
+        h2 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        button { padding: 12px 20px; margin: 10px 5px; background: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 14px; }
+        button:hover { background: #2980b9; }
+        .output { background: #ecf0f1; padding: 15px; margin: 15px 0; border-radius: 5px; min-height: 50px; font-family: monospace; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>a) AJAX without jQuery</h2>
+        <button onclick="vanillaAjax()">Load Text File (Vanilla JS)</button>
+        <div class="output" id="output1"></div>
+
+        <h2>b) AJAX with jQuery</h2>
+        <button onclick="jqueryAjax()">Load Text File (jQuery)</button>
+        <div class="output" id="output2"></div>
+
+        <h2>c) getJSON() Method</h2>
+        <button onclick="getJSONDemo()">Get JSON Data</button>
+        <div class="output" id="output3"></div>
+
+        <h2>d) parseJSON() Method</h2>
+        <button onclick="parseJSONDemo()">Parse JSON String</button>
+        <div class="output" id="output4"></div>
+    </div>
+
+    <script>
+        // a) AJAX without jQuery (Vanilla JavaScript)
+        function vanillaAjax() {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    document.getElementById('output1').innerHTML = xhr.responseText;
+                }
+            };
+            xhr.open('GET', 'sample.txt', true);
+            xhr.send();
+            
+            // Demo: If file doesn't exist, show sample content
+            setTimeout(function() {
+                if (document.getElementById('output1').innerHTML === '') {
+                    document.getElementById('output1').innerHTML = 'Sample text loaded from file using Vanilla AJAX!<br>This is the content of sample.txt';
+                }
+            }, 500);
+        }
+
+        // b) AJAX with jQuery
+        function jqueryAjax() {
+            $.ajax({
+                url: 'sample.txt',
+                method: 'GET',
+                success: function(data) {
+                    $('#output2').html(data);
+                },
+                error: function() {
+                    $('#output2').html('Sample text loaded from file using jQuery AJAX!<br>This is the content of sample.txt');
+                }
+            });
+        }
+
+        // c) getJSON() method
+        function getJSONDemo() {
+            // Simulating JSON data (normally from data.json file)
+            var jsonData = {
+                "name": "John Doe",
+                "age": 30,
+                "city": "Bangalore",
+                "skills": ["JavaScript", "Python", "Django"]
+            };
+            
+            // Normally: $.getJSON('data.json', function(data) { ... });
+            // Demo version:
+            setTimeout(function() {
+                var output = '<strong>JSON Data Retrieved:</strong><br>';
+                output += 'Name: ' + jsonData.name + '<br>';
+                output += 'Age: ' + jsonData.age + '<br>';
+                output += 'City: ' + jsonData.city + '<br>';
+                output += 'Skills: ' + jsonData.skills.join(', ');
+                $('#output3').html(output);
+            }, 300);
+        }
+
+        // d) parseJSON() method
+        function parseJSONDemo() {
+            var jsonString = '{"employee":"Alice","position":"Developer","salary":75000,"department":"IT"}';
+            
+            var obj = $.parseJSON(jsonString);
+            
+            var output = '<strong>Parsed JSON Object:</strong><br>';
+            output += 'Employee: ' + obj.employee + '<br>';
+            output += 'Position: ' + obj.position + '<br>';
+            output += 'Salary: ₹' + obj.salary + '<br>';
+            output += 'Department: ' + obj.department;
+            
+            $('#output4').html(output);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="DSATM Newspaper">
+    <title>DSATM Newspaper</title>
+    <style>
+        body { margin: 0; font-family: Arial; }
+        header { background: #2c3e50; color: white; padding: 15px; text-align: center; }
+        nav { background: #34495e; padding: 10px; text-align: center; }
+        nav a { color: white; text-decoration: none; padding: 8px 15px; }
+        nav a:hover { background: #e74c3c; }
+        .main { display: flex; max-width: 1000px; margin: 10px auto; }
+        section { flex: 1; background: white; padding: 15px; }
+        aside { width: 200px; background: #ecf0f1; padding: 15px; }
+        h2 { color: #e74c3c; }
+        table { width: 100%; border-collapse: collapse; }  
+        th { background: #3498db; color: white; padding: 5px; }
+        td { border: 1px solid #ddd; padding: 4px; }
+        aside a { display: block; color: #3498db; padding: 5px; }
+        footer { background: #2c3e50; color: white; text-align: center; padding: 10px; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>DSATM Newspaper</h1>
+    </header>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#news">News</a>
+        <a href="#events">Events</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="main">
+        <section id="home">
+            <h2 id="news">News</h2>
+            <article>
+                <h3>Annual Fest 2025</h3>
+                <p><time>Oct 28, 2025</time></p>
+                <figure>
+                    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400" alt="Fest" width="100%">
+                    <figcaption>Annual Fest</figcaption>
+                </figure>
+                <p>Over 2000 students participated in the fest.</p>
+            </article>
+
+            <h2 id="events">Events</h2>
+            <table>
+                <tr>
+                    <th>Date</th><th>Event</th><th>Dept</th><th>Venue</th><th>Time</th><th>Contact</th><th>Fee</th><th>Status</th><th>Seats</th>
+                </tr>
+                <tr>
+                    <td>Nov 5</td><td>Hackathon</td><td>CSE</td><td>Lab</td><td>9AM</td><td>9876543210</td><td>Free</td><td>Open</td><td>50</td>
+                </tr>
+                <tr>
+                    <td>Nov 8</td><td>Tech Talk</td><td>ISE</td><td>Hall</td><td>2PM</td><td>9876543211</td><td>Free</td><td>Open</td><td>100</td>
+                </tr>
+                <tr>
+                    <td>Nov 12</td><td>Workshop</td><td>ECE</td><td>Lab</td><td>10AM</td><td>9876543212</td><td>₹200</td><td>Open</td><td>30</td>
+                </tr>
+                <tr>
+                    <td>Nov 15</td><td>Cultural</td><td>All</td><td>Ground</td><td>11AM</td><td>9876543213</td><td>Free</td><td>Open</td><td>500</td>
+                </tr>
+                <tr>
+                    <td>Nov 18</td><td>Seminar</td><td>MBA</td><td>Hall A</td><td>3PM</td><td>9876543214</td><td>Free</td><td>Open</td><td>100</td>
+                </tr>
+                <tr>
+                    <td>Nov 22</td><td>Sports</td><td>All</td><td>Ground</td><td>8AM</td><td>9876543215</td><td>Free</td><td>Open</td><td>300</td>
+                </tr>
+                <tr>
+                    <td>Nov 25</td><td>Paper</td><td>CSE</td><td>Hall B</td><td>1PM</td><td>9876543216</td><td>₹100</td><td>Open</td><td>40</td>
+                </tr>
+                <tr>
+                    <td>Nov 28</td><td>Alumni</td><td>All</td><td>Hall</td><td>5PM</td><td>9876543217</td><td>Free</td><td>Open</td><td>150</td>
+                </tr>
+                <tr>
+                    <td>Dec 1</td><td>Expo</td><td>All</td><td>Hall</td><td>10AM</td><td>9876543218</td><td>Free</td><td>Open</td><td>200</td>
+                </tr>
+            </table>
+
+            <h2 id="contact">Contact</h2>
+            <p>Phone: +91-80-12345678</p>
+            <p>Email: info@dsatm.edu.in</p>
+        </section>
+
+        <aside>
+            <h3>Links</h3>
+            <a href="#">Departments</a>
+            <a href="#">Faculty</a>
+            <a href="#">Placements</a>
+            <a href="#">Library</a>
+        </aside>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 DSATM</p>
+    </footer>
+</body>
+</html>

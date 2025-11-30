@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JSON Operations</title>
+    <style>
+        body { font-family: Arial; background: #f0f0f0; padding: 20px; }
+        .container { max-width: 700px; margin: 0 auto; background: white; padding: 20px; border-radius: 10px; }
+        h3 { color: #2c3e50; margin: 15px 0 5px 0; }
+        textarea, input { width: 100%; padding: 8px; margin: 5px 0; border: 2px solid #3498db; border-radius: 5px; }
+        button { padding: 10px 20px; margin: 5px; background: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background: #2980b9; }
+        .output { background: #ecf0f1; padding: 10px; margin: 5px 0; border-radius: 5px; font-family: monospace; white-space: pre-wrap; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3>a) JSON to Object</h3>
+        <textarea id="json" rows="3" placeholder='{"name":"John","age":30}'></textarea>
+        <button onclick="toObj()">Convert</button>
+        <div class="output" id="out1"></div>
+
+        <h3>b) Convert to Date</h3>
+        <input id="date" placeholder="2025-11-19">
+        <button onclick="toDate()">Convert</button>
+        <div class="output" id="out2"></div>
+
+        <h3>c) JSON ↔ CSV</h3>
+        <textarea id="data" rows="3" placeholder='[{"name":"John","age":30}]'></textarea>
+        <button onclick="toCsv()">JSON→CSV</button>
+        <button onclick="toJson()">CSV→JSON</button>
+        <div class="output" id="out3"></div>
+
+        <h3>d) Create Hash</h3>
+        <input id="hash" placeholder="Enter text">
+        <button onclick="makeHash()">Hash</button>
+        <div class="output" id="out4"></div>
+    </div>
+
+    <script>
+        function toObj() {
+            var obj = JSON.parse(document.getElementById('json').value);
+            document.getElementById('out1').textContent = JSON.stringify(obj, null, 2);
+        }
+
+        function toDate() {
+            var d = new Date(document.getElementById('date').value);
+            document.getElementById('out2').textContent = 
+                'Date: ' + d + '\nISO: ' + d.toISOString();
+        }
+
+        function toCsv() {
+            var json = JSON.parse(document.getElementById('data').value);
+            var keys = Object.keys(json[0]);
+            var csv = keys.join(',') + '\n';
+            json.forEach(function(row) {
+                csv += keys.map(function(k) { return row[k]; }).join(',') + '\n';
+            });
+            document.getElementById('out3').textContent = csv;
+        }
+
+        function toJson() {
+            var lines = document.getElementById('data').value.split('\n');
+            var keys = lines[0].split(',');
+            var result = [];
+            for (var i = 1; i < lines.length; i++) {
+                if (lines[i]) {
+                    var obj = {};
+                    var vals = lines[i].split(',');
+                    keys.forEach(function(k, j) { obj[k] = vals[j]; });
+                    result.push(obj);
+                }
+            }
+            document.getElementById('out3').textContent = JSON.stringify(result, null, 2);
+        }
+
+        async function makeHash() {
+            var text = document.getElementById('hash').value;
+            var buffer = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
+            var hex = Array.from(new Uint8Array(buffer)).map(function(b) {
+                return b.toString(16).padStart(2, '0');
+            }).join('');
+            document.getElementById('out4').textContent = 'Hash: ' + hex;
+        }
+    </script>
+</body>
+</html>

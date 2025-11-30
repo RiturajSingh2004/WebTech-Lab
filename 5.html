@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>XML User Search</title>
+    <style>
+        body { font-family: Arial; background: #f0f0f0; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; }
+        h2 { color: #2c3e50; text-align: center; }
+        input { width: 100%; padding: 10px; margin: 10px 0; border: 2px solid #3498db; border-radius: 5px; font-size: 16px; }
+        button { width: 100%; padding: 12px; background: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
+        button:hover { background: #2980b9; }
+        .output { background: #ecf0f1; padding: 15px; margin: 15px 0; border-radius: 5px; min-height: 50px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>XML User Search (SAX Parser)</h2>
+        <input type="text" id="userId" placeholder="Enter User ID (101-110)">
+        <button onclick="searchSAX()">Search User</button>
+        <div class="output" id="result"></div>
+    </div>
+
+    <script>
+        var xmlString = `<?xml version="1.0"?>
+<users>
+    <user>
+        <userid>101</userid>
+        <name>John Doe</name>
+        <email>john@example.com</email>
+        <phone>9876543210</phone>
+        <city>Bangalore</city>
+    </user>
+    <user>
+        <userid>102</userid>
+        <name>Jane Smith</name>
+        <email>jane@example.com</email>
+        <phone>9876543211</phone>
+        <city>Mumbai</city>
+    </user>
+    <user>
+        <userid>103</userid>
+        <name>Bob Johnson</name>
+        <email>bob@example.com</email>
+        <phone>9876543212</phone>
+        <city>Delhi</city>
+    </user>
+    <user>
+        <userid>104</userid>
+        <name>Alice Brown</name>
+        <email>alice@example.com</email>
+        <phone>9876543213</phone>
+        <city>Chennai</city>
+    </user>
+    <user>
+        <userid>105</userid>
+        <name>Charlie Davis</name>
+        <email>charlie@example.com</email>
+        <phone>9876543214</phone>
+        <city>Pune</city>
+    </user>
+    <user>
+        <userid>106</userid>
+        <name>Diana Wilson</name>
+        <email>diana@example.com</email>
+        <phone>9876543215</phone>
+        <city>Hyderabad</city>
+    </user>
+    <user>
+        <userid>107</userid>
+        <name>Eve Martinez</name>
+        <email>eve@example.com</email>
+        <phone>9876543216</phone>
+        <city>Kolkata</city>
+    </user>
+    <user>
+        <userid>108</userid>
+        <name>Frank Garcia</name>
+        <email>frank@example.com</email>
+        <phone>9876543217</phone>
+        <city>Ahmedabad</city>
+    </user>
+    <user>
+        <userid>109</userid>
+        <name>Grace Lee</name>
+        <email>grace@example.com</email>
+        <phone>9876543218</phone>
+        <city>Jaipur</city>
+    </user>
+    <user>
+        <userid>110</userid>
+        <name>Henry Taylor</name>
+        <email>henry@example.com</email>
+        <phone>9876543219</phone>
+        <city>Surat</city>
+    </user>
+</users>`;
+
+        // SAX-Style Parser (Sequential Reading)
+        function searchSAX() {
+            var userId = document.getElementById('userId').value;
+            var lines = xmlString.split('\n');
+            var inUser = false;
+            var currentUser = {};
+            
+            for (var i = 0; i < lines.length; i++) {
+                var line = lines[i].trim();
+                
+                if (line.includes('<user>')) {
+                    inUser = true;
+                    currentUser = {};
+                }
+                else if (line.includes('</user>')) {
+                    if (currentUser.userid === userId) {
+                        document.getElementById('result').innerHTML = 
+                            '<strong>User Found!</strong><br><br>' +
+                            'User ID: ' + currentUser.userid + '<br>' +
+                            'Name: ' + currentUser.name + '<br>' +
+                            'Email: ' + currentUser.email + '<br>' +
+                            'Phone: ' + currentUser.phone + '<br>' +
+                            'City: ' + currentUser.city;
+                        return;
+                    }
+                    inUser = false;
+                }
+                else if (inUser) {
+                    if (line.includes('<userid>')) {
+                        currentUser.userid = line.replace(/<\/?userid>/g, '');
+                    } else if (line.includes('<name>')) {
+                        currentUser.name = line.replace(/<\/?name>/g, '');
+                    } else if (line.includes('<email>')) {
+                        currentUser.email = line.replace(/<\/?email>/g, '');
+                    } else if (line.includes('<phone>')) {
+                        currentUser.phone = line.replace(/<\/?phone>/g, '');
+                    } else if (line.includes('<city>')) {
+                        currentUser.city = line.replace(/<\/?city>/g, '');
+                    }
+                }
+            }
+            document.getElementById('result').innerHTML = '<strong>User Not Found!</strong>';
+        }
+    </script>
+</body>
+</html>

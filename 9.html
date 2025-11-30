@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>jQuery Script</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body { font-family: Arial; background: #f0f0f0; padding: 20px; }
+        .container { max-width: 700px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; }
+        h2 { color: #2c3e50; }
+        button { padding: 12px 20px; margin: 5px; background: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 14px; }
+        button:hover { background: #2980b9; }
+        p { background: #ecf0f1; padding: 10px; margin: 10px 0; border-radius: 5px; }
+        ul { background: #ecf0f1; padding: 15px 30px; border-radius: 5px; }
+        .box { width: 100px; height: 100px; background: #3498db; margin: 20px 0; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>a) Append Content</h2>
+        <p id="para">This is a paragraph.</p>
+        <ul id="list">
+            <li>Item 1</li>
+            <li>Item 2</li>
+        </ul>
+        <button onclick="appendContent()">Append Content</button>
+
+        <h2>b) Animate with CSS Style</h2>
+        <div class="box" id="box1"></div>
+        <button onclick="animateBox()">Animate Box</button>
+
+        <h2>c) Change Color While Animating</h2>
+        <div class="box" id="box2"></div>
+        <button onclick="animateWithColor()">Animate & Change Color</button>
+    </div>
+
+    <script>
+        // a) Append content to paragraph and list
+        function appendContent() {
+            $('#para').append(' <strong>Appended text!</strong>');
+            $('#list').append('<li>New Item</li>');
+        }
+
+        // b) Animate with CSS style changes
+        function animateBox() {
+            $('#box1').animate({
+                width: '200px',
+                height: '200px',
+                opacity: 0.5
+            }, 1000);
+        }
+
+        // c) Change color of div during animation
+        function animateWithColor() {
+            $('#box2').css('background', '#e74c3c').animate({
+                width: '250px',
+                height: '150px',
+                marginLeft: '100px'
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
