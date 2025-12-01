@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resume Builder</title>
+    <style>
+        body { font-family: Arial; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; margin: 0; }
+        .container { max-width: 700px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        h1 { color: #2c3e50; text-align: center; margin-bottom: 30px; }
+        h3 { color: #3498db; margin: 20px 0 10px 0; border-bottom: 2px solid #3498db; padding-bottom: 5px; }
+        input, textarea { width: 100%; padding: 10px; margin: 8px 0; border: 2px solid #ddd; border-radius: 5px; font-size: 14px; box-sizing: border-box; }
+        input:focus, textarea:focus { border-color: #3498db; outline: none; }
+        button { width: 100%; padding: 15px; background: #27ae60; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; font-weight: bold; margin-top: 20px; }
+        button:hover { background: #229954; }
+        label { font-weight: bold; color: #2c3e50; display: block; margin-top: 10px; }
+        #resumeOutput { display: none; margin-top: 30px; padding: 40px; background: white; border-radius: 10px; }
+        #resumeOutput.show { display: block; }
+        .header { text-align: center; border-bottom: 3px solid #3498db; padding-bottom: 20px; margin-bottom: 30px; }
+        .header h2 { color: #2c3e50; margin: 0; font-size: 32px; }
+        .contact { color: #7f8c8d; margin-top: 10px; }
+        h4 { color: #3498db; border-bottom: 2px solid #3498db; padding-bottom: 5px; margin: 25px 0 15px 0; }
+        .section { margin: 20px 0; }
+        .info { margin: 10px 0; line-height: 1.6; }
+        .skills-list { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+        .skill { background: #3498db; color: white; padding: 6px 12px; border-radius: 15px; font-size: 14px; }
+        .print-btn { background: #e74c3c !important; margin-top: 20px; }
+        .print-btn:hover { background: #c0392b !important; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📝 Online Resume Builder</h1>
+        <form id="resumeForm">
+            <h3>Personal Information</h3>
+            <label>Full Name:</label>
+            <input type="text" id="name" required>
+            
+            <label>Email:</label>
+            <input type="email" id="email" required>
+            
+            <label>Phone:</label>
+            <input type="tel" id="phone" required>
+            
+            <label>Address:</label>
+            <input type="text" id="address" required>
+
+            <h3>Academic Information</h3>
+            <label>Degree:</label>
+            <input type="text" id="degree" placeholder="e.g., B.Tech in Computer Science" required>
+            
+            <label>University:</label>
+            <input type="text" id="university" required>
+            
+            <label>Year:</label>
+            <input type="text" id="year" placeholder="e.g., 2020-2024" required>
+
+            <h3>Professional Information</h3>
+            <label>Job Title:</label>
+            <input type="text" id="job" placeholder="e.g., Software Developer" required>
+            
+            <label>Company:</label>
+            <input type="text" id="company" required>
+            
+            <label>Experience:</label>
+            <input type="text" id="experience" placeholder="e.g., 2 years" required>
+            
+            <label>Skills (comma separated):</label>
+            <input type="text" id="skills" placeholder="e.g., JavaScript, Python, React" required>
+            
+            <label>Summary:</label>
+            <textarea id="summary" rows="4" placeholder="Brief professional summary..." required></textarea>
+
+            <button type="submit">Generate Resume</button>
+        </form>
+
+        <div id="resumeOutput">
+            <div class="header">
+                <h2 id="outName"></h2>
+                <div class="contact" id="outContact"></div>
+            </div>
+            
+            <div class="section">
+                <h4>Professional Summary</h4>
+                <p class="info" id="outSummary"></p>
+            </div>
+            
+            <div class="section">
+                <h4>Education</h4>
+                <div class="info" id="outEducation"></div>
+            </div>
+            
+            <div class="section">
+                <h4>Work Experience</h4>
+                <div class="info" id="outWork"></div>
+            </div>
+            
+            <div class="section">
+                <h4>Skills</h4>
+                <div class="skills-list" id="outSkills"></div>
+            </div>
+
+            <button onclick="window.print()" class="print-btn">🖨️ Print Resume</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('resumeForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var phone = document.getElementById('phone').value;
+            var address = document.getElementById('address').value;
+            var degree = document.getElementById('degree').value;
+            var university = document.getElementById('university').value;
+            var year = document.getElementById('year').value;
+            var job = document.getElementById('job').value;
+            var company = document.getElementById('company').value;
+            var experience = document.getElementById('experience').value;
+            var skills = document.getElementById('skills').value;
+            var summary = document.getElementById('summary').value;
+            
+            document.getElementById('outName').textContent = name;
+            document.getElementById('outContact').innerHTML = '📧 ' + email + ' | 📱 ' + phone + ' | 📍 ' + address;
+            document.getElementById('outSummary').textContent = summary;
+            document.getElementById('outEducation').innerHTML = '<strong>' + degree + '</strong><br>' + university + ' | ' + year;
+            document.getElementById('outWork').innerHTML = '<strong>' + job + '</strong> - ' + company + '<br>Experience: ' + experience;
+            
+            var skillsHTML = '';
+            skills.split(',').forEach(function(skill) {
+                skillsHTML += '<span class="skill">' + skill.trim() + '</span>';
+            });
+            document.getElementById('outSkills').innerHTML = skillsHTML;
+            
+            document.getElementById('resumeOutput').classList.add('show');
+            document.getElementById('resumeOutput').scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>

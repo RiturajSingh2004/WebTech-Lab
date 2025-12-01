@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Portfolio</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial; background: #f5f5f5; }
+        nav { background: #2c3e50; padding: 15px; position: sticky; top: 0; z-index: 100; }
+        nav a { color: white; text-decoration: none; padding: 10px 20px; margin: 0 5px; display: inline-block; border-radius: 5px; }
+        nav a:hover { background: #34495e; }
+        .page { display: none; min-height: 100vh; padding: 40px 20px; }
+        .page.active { display: block; }
+        .container { max-width: 900px; margin: 0 auto; background: white; padding: 40px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; margin-bottom: 20px; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
+        h2 { color: #3498db; margin: 25px 0 15px 0; }
+        .profile { text-align: center; margin-bottom: 30px; }
+        .profile img { width: 150px; height: 150px; border-radius: 50%; border: 5px solid #3498db; }
+        .section { margin: 20px 0; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        td { padding: 10px; border: 1px solid #ddd; }
+        td:first-child { font-weight: bold; background: #ecf0f1; width: 200px; }
+        ul { margin: 10px 0 10px 30px; }
+        li { margin: 8px 0; }
+        .skills { display: flex; flex-wrap: wrap; gap: 10px; }
+        .skill { background: #3498db; color: white; padding: 8px 15px; border-radius: 20px; }
+        footer { background: #2c3e50; color: white; text-align: center; padding: 20px; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#" onclick="showPage('home')">Home</a>
+        <a href="#" onclick="showPage('resume')">Resume</a>
+        <a href="#" onclick="showPage('biodata')">Bio-Data</a>
+        <a href="#" onclick="showPage('contact')">Contact</a>
+    </nav>
+
+    <!-- HOME PAGE -->
+    <div id="home" class="page active">
+        <div class="container">
+            <div class="profile">
+                <img src="https://via.placeholder.com/150" alt="Profile">
+                <h1>John Doe</h1>
+                <p style="font-size: 18px; color: #7f8c8d;">Full Stack Developer</p>
+            </div>
+            <div class="section">
+                <h2>About Me</h2>
+                <p>Passionate software developer with 3+ years of experience in web development. Specialized in creating efficient, scalable applications using modern technologies.</p>
+            </div>
+            <div class="section">
+                <h2>Quick Facts</h2>
+                <ul>
+                    <li>🎓 B.Tech in Computer Science</li>
+                    <li>💼 3+ years experience</li>
+                    <li>📍 Based in Bangalore, India</li>
+                    <li>🚀 Love building web applications</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- RESUME PAGE -->
+    <div id="resume" class="page">
+        <div class="container">
+            <h1>Resume</h1>
+            
+            <div class="section">
+                <h2>Professional Summary</h2>
+                <p>Experienced Full Stack Developer with expertise in JavaScript, Python, and modern web frameworks. Proven track record of delivering high-quality solutions.</p>
+            </div>
+
+            <div class="section">
+                <h2>Education</h2>
+                <ul>
+                    <li><strong>B.Tech in Computer Science</strong> - XYZ University (2018-2022)</li>
+                    <li><strong>Higher Secondary</strong> - ABC School (2016-2018)</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>Work Experience</h2>
+                <ul>
+                    <li><strong>Senior Developer</strong> - Tech Corp (2022-Present)
+                        <ul>
+                            <li>Developed 10+ web applications</li>
+                            <li>Led team of 5 developers</li>
+                        </ul>
+                    </li>
+                    <li><strong>Junior Developer</strong> - StartUp Inc (2021-2022)
+                        <ul>
+                            <li>Built responsive websites</li>
+                            <li>Implemented REST APIs</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>Skills</h2>
+                <div class="skills">
+                    <span class="skill">JavaScript</span>
+                    <span class="skill">Python</span>
+                    <span class="skill">Django</span>
+                    <span class="skill">React</span>
+                    <span class="skill">HTML/CSS</span>
+                    <span class="skill">SQL</span>
+                    <span class="skill">Git</span>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Projects</h2>
+                <ul>
+                    <li><strong>E-Commerce Platform</strong> - Built full-stack shopping site</li>
+                    <li><strong>Task Manager</strong> - Created productivity application</li>
+                    <li><strong>Portfolio Website</strong> - Designed personal portfolio</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- BIO-DATA PAGE -->
+    <div id="biodata" class="page">
+        <div class="container">
+            <h1>Bio-Data</h1>
+            
+            <table>
+                <tr>
+                    <td>Full Name</td>
+                    <td>John Michael Doe</td>
+                </tr>
+                <tr>
+                    <td>Date of Birth</td>
+                    <td>January 15, 2000</td>
+                </tr>
+                <tr>
+                    <td>Age</td>
+                    <td>25 Years</td>
+                </tr>
+                <tr>
+                    <td>Gender</td>
+                    <td>Male</td>
+                </tr>
+                <tr>
+                    <td>Nationality</td>
+                    <td>Indian</td>
+                </tr>
+                <tr>
+                    <td>Father's Name</td>
+                    <td>Robert Doe</td>
+                </tr>
+                <tr>
+                    <td>Mother's Name</td>
+                    <td>Mary Doe</td>
+                </tr>
+                <tr>
+                    <td>Marital Status</td>
+                    <td>Single</td>
+                </tr>
+                <tr>
+                    <td>Languages Known</td>
+                    <td>English, Hindi, Kannada</td>
+                </tr>
+                <tr>
+                    <td>Address</td>
+                    <td>123 Main Street, Bangalore, Karnataka - 560001</td>
+                </tr>
+                <tr>
+                    <td>Phone</td>
+                    <td>+91 9876543210</td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td>john.doe@example.com</td>
+                </tr>
+                <tr>
+                    <td>Hobbies</td>
+                    <td>Coding, Reading, Gaming, Photography</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- CONTACT PAGE -->
+    <div id="contact" class="page">
+        <div class="container">
+            <h1>Contact Me</h1>
+            
+            <div class="section">
+                <h2>Get In Touch</h2>
+                <p>Feel free to reach out for collaborations or just a friendly chat!</p>
+                
+                <table style="margin-top: 20px;">
+                    <tr>
+                        <td>Email</td>
+                        <td>john.doe@example.com</td>
+                    </tr>
+                    <tr>
+                        <td>Phone</td>
+                        <td>+91 9876543210</td>
+                    </tr>
+                    <tr>
+                        <td>LinkedIn</td>
+                        <td>linkedin.com/in/johndoe</td>
+                    </tr>
+                    <tr>
+                        <td>GitHub</td>
+                        <td>github.com/johndoe</td>
+                    </tr>
+                    <tr>
+                        <td>Location</td>
+                        <td>Bangalore, India</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 John Doe. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function showPage(pageId) {
+            $('.page').removeClass('active');
+            $('#' + pageId).addClass('active');
+            $('body, html').animate({ scrollTop: 0 }, 300);
+        }
+
+        // Smooth scroll animation on page load
+        $(document).ready(function() {
+            $('.container').hide().fadeIn(800);
+        });
+    </script>
+</body>
+</html>
